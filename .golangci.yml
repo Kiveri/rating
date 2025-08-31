@@ -1,0 +1,400 @@
+linters:
+  enable:
+    - govet
+    - staticcheck
+    - errcheck
+    - gofmt
+    - goimports
+    - unused
+    - ineffassign
+    - asciicheck
+    - bidichk
+    - bodyclose
+    - cyclop
+    - decorder
+    - dogsled
+    - dupl
+    - errcheck
+    - errchkjson
+    - errname
+    - exptostd
+    - forcetypeassert
+    - gocognit
+    - goconst
+    - gocyclo
+    - godot
+    - godox
+    - govet
+    - iface
+    - importas
+    - inamedparam
+    - ineffassign
+    - intrange
+    - ireturn
+    - makezero
+    - musttag
+    - nestif
+    - nlreturn
+    - paralleltest
+    - sqlclosecheck
+    - tparallel
+    - unparam
+    - wastedassign
+    - whitespace
+
+  settings:
+    cyclop:
+      max-complexity: 20
+      # The maximal average package complexity.
+      # If it's higher than 0.0 (float) the check is enabled.
+      # Default: 0.0
+      package-average: 0.5
+    decorder:
+      # Required order of `type`, `const`, `var` and `func` declarations inside a file.
+      # Default: types before constants before variables before functions.
+      dec-order:
+        - type
+        - const
+        - var
+        - func
+      # If true, underscore vars (vars with "_" as the name) will be ignored at all checks.
+      # Default: false (underscore vars are not ignored)
+      ignore-underscore-vars: false
+      # If true, order of declarations is not checked at all.
+      # Default: true (disabled)
+      disable-dec-order-check: false
+      # If true, `init` func can be anywhere in file (does not have to be declared before all other functions).
+      # Default: true (disabled)
+      disable-init-func-first-check: false
+      # If true, multiple global `type`, `const` and `var` declarations are allowed.
+      # Default: true (disabled)
+      disable-dec-num-check: false
+      # If true, type declarations will be ignored for dec num check.
+      # Default: false (type statements are not ignored)
+      disable-type-dec-num-check: false
+      # If true, const declarations will be ignored for dec num check.
+      # Default: false (const statements are not ignored)
+      disable-const-dec-num-check: false
+      # If true, var declarations will be ignored for dec num check.
+      # Default: false (var statements are not ignored)
+      disable-var-dec-num-check: false
+    errcheck:
+      # Report about not checking of errors in type assertions: `a := b.(MyStruct)`.
+      # Such cases aren't reported by default.
+      # Default: false
+      check-type-assertions: true
+      # report about assignment of errors to blank identifier: `num, _ := strconv.Atoi(numStr)`.
+      # Such cases aren't reported by default.
+      # Default: false
+      check-blank: true
+      # To disable the errcheck built-in exclude list.
+      # See `-excludeonly` option in https://github.com/kisielk/errcheck#excluding-functions for details.
+      # Default: false
+      disable-default-exclusions: true
+      # List of functions to exclude from checking, where each entry is a single function to exclude.
+      # See https://github.com/kisielk/errcheck#excluding-functions for details.
+      exclude-functions:
+        - io/ioutil.ReadFile
+        - io.Copy(*bytes.Buffer)
+        - io.Copy(os.Stdout)
+      # Display function signature instead of selector.
+      # Default: false
+      verbose: true
+    gocognit:
+      # Minimal code complexity to report.
+      # Default: 30 (but we recommend 10-20)
+      min-complexity: 20
+    gocyclo:
+      # Minimal code complexity to report.
+      # Default: 30 (but we recommend 10-20)
+      min-complexity: 20
+    govet:
+      # Disable all analyzers.
+      # Default: false
+      disable-all: true
+      # Enable analyzers by name.
+      # (In addition to default:
+      #   appends, asmdecl, assign, atomic, bools, buildtag, cgocall, composites, copylocks, defers, directive, errorsas,
+      #   framepointer, httpresponse, ifaceassert, loopclosure, lostcancel, nilfunc, printf, shift, sigchanyzer, slog,
+      #   stdmethods, stringintconv, structtag, testinggoroutine, tests, timeformat, unmarshal, unreachable, unsafeptr,
+      #   unusedresult
+      # ).
+      # Run `GL_DEBUG=govet golangci-lint run --enable=govet` to see default, all available analyzers, and enabled analyzers.
+      # Default: []
+      enable:
+        # Check for missing values after append.
+        - appends
+        # Report mismatches between assembly files and Go declarations.
+        - asmdecl
+        # Check for useless assignments.
+        - assign
+        # Check for common mistakes using the sync/atomic package.
+        - atomic
+        # Check for non-64-bits-aligned arguments to sync/atomic functions.
+        - atomicalign
+        # Check for common mistakes involving boolean operators.
+        - bools
+        # Check //go:build and // +build directives.
+        - buildtag
+        # Detect some violations of the cgo pointer passing rules.
+        - cgocall
+        # Check for unkeyed composite literals.
+        - composites
+        # Check for locks erroneously passed by value.
+        - copylocks
+        # Check for calls of reflect.DeepEqual on error values.
+        - deepequalerrors
+        # Report common mistakes in defer statements.
+        - defers
+        # Check Go toolchain directives such as //go:debug.
+        - directive
+        # Report passing non-pointer or non-error values to errors.As.
+        - errorsas
+        # Find structs that would use less memory if their fields were sorted.
+        - fieldalignment
+        # Find calls to a particular function.
+        - findcall
+        # Report assembly that clobbers the frame pointer before saving it.
+        - framepointer
+        # Check format of addresses passed to net.Dial.
+        - hostport
+        # Report using Go 1.22 enhanced ServeMux patterns in older Go versions.
+        - httpmux
+        # Check for mistakes using HTTP responses.
+        - httpresponse
+        # Detect impossible interface-to-interface type assertions.
+        - ifaceassert
+        # Check references to loop variables from within nested functions.
+        - loopclosure
+        # Check cancel func returned by context.WithCancel is called.
+        - lostcancel
+        # Check for useless comparisons between functions and nil.
+        - nilfunc
+        # Check for redundant or impossible nil comparisons.
+        - nilness
+        # Check consistency of Printf format strings and arguments.
+        - printf
+        # Check for comparing reflect.Value values with == or reflect.DeepEqual.
+        - reflectvaluecompare
+        # Check for possible unintended shadowing of variables.
+        - shadow
+        # Check for shifts that equal or exceed the width of the integer.
+        - shift
+        # Check for unbuffered channel of os.Signal.
+        - sigchanyzer
+        # Check for invalid structured logging calls.
+        - slog
+        # Check the argument type of sort.Slice.
+        - sortslice
+        # Check signature of methods of well-known interfaces.
+        - stdmethods
+        # Report uses of too-new standard library symbols.
+        - stdversion
+        # Check for string(int) conversions.
+        - stringintconv
+        # Check that struct field tags conform to reflect.StructTag.Get.
+        - structtag
+        # Report calls to (*testing.T).Fatal from goroutines started by a test.
+        - testinggoroutine
+        # Check for common mistaken usages of tests and examples.
+        - tests
+        # Check for calls of (time.Time).Format or time.Parse with 2006-02-01.
+        - timeformat
+        # Report passing non-pointer or non-interface values to unmarshal.
+        - unmarshal
+        # Check for unreachable code.
+        - unreachable
+        # Check for invalid conversions of uintptr to unsafe.Pointer.
+        - unsafeptr
+        # Check for unused results of calls to some functions.
+        - unusedresult
+        # Checks for unused writes.
+        - unusedwrite
+        # Check for misuses of sync.WaitGroup.
+        - waitgroup
+      # Enable all analyzers.
+      # Default: false
+      enable-all: true
+      # Disable analyzers by name.
+      # (In addition to default
+      #   atomicalign, deepequalerrors, fieldalignment, findcall, nilness, reflectvaluecompare, shadow, sortslice,
+      #   timeformat, unusedwrite
+      # ).
+      # Run `GL_DEBUG=govet golangci-lint run --enable=govet` to see default, all available analyzers, and enabled analyzers.
+      # Default: []
+      disable:
+        - appends
+        - asmdecl
+        - assign
+        - atomic
+        - atomicalign
+        - bools
+        - buildtag
+        - cgocall
+        - composites
+        - copylocks
+        - deepequalerrors
+        - defers
+        - directive
+        - errorsas
+        - fieldalignment
+        - findcall
+        - framepointer
+        - hostport
+        - httpmux
+        - httpresponse
+        - ifaceassert
+        - loopclosure
+        - lostcancel
+        - nilfunc
+        - nilness
+        - printf
+        - reflectvaluecompare
+        - shadow
+        - shift
+        - sigchanyzer
+        - slog
+        - sortslice
+        - stdmethods
+        - stdversion
+        - stringintconv
+        - structtag
+        - testinggoroutine
+        - tests
+        - timeformat
+        - unmarshal
+        - unreachable
+        - unsafeptr
+        - unusedresult
+        - unusedwrite
+        - waitgroup
+      # Settings per analyzer.
+      settings:
+        # Analyzer name, run `go tool vet help` to see all analyzers.
+        printf:
+          # Comma-separated list of print function names to check (in addition to default, see `go tool vet help printf`).
+          # Default: []
+          funcs:
+            - (github.com/golangci/golangci-lint/v2/pkg/logutils.Log).Infof
+            - (github.com/golangci/golangci-lint/v2/pkg/logutils.Log).Warnf
+            - (github.com/golangci/golangci-lint/v2/pkg/logutils.Log).Errorf
+            - (github.com/golangci/golangci-lint/v2/pkg/logutils.Log).Fatalf
+        shadow:
+          # Whether to be strict about shadowing; can be noisy.
+          # Default: false
+          strict: true
+        unusedresult:
+          # Comma-separated list of functions whose results must be used.
+          # (In addition to default:
+          #   context.WithCancel, context.WithDeadline, context.WithTimeout, context.WithValue, errors.New, fmt.Errorf,
+          #   fmt.Sprint, fmt.Sprintf, sort.Reverse
+          # ).
+          # Default: []
+          funcs:
+            - pkg.MyFunc
+          # Comma-separated list of names of methods of type func() string whose results must be used.
+          # (In addition to default Error,String).
+          # Default: []
+          stringmethods:
+            - MyMethod
+    iface:
+      # List of analyzers.
+      # Default: ["identical"]
+      enable:
+        - identical # Identifies interfaces in the same package that have identical method sets.
+        - unused # Identifies interfaces that are not used anywhere in the same package where the interface is defined.
+        - opaque # Identifies functions that return interfaces, but the actual returned value is always a single concrete implementation.
+        - unexported # Identifies interfaces that are not exported but are used in exported functions or methods.
+      settings:
+        unused:
+          # List of packages path to exclude from the check.
+          # Default: []
+          exclude:
+            - github.com/example/log
+    importas:
+      # Do not allow unaliased imports of aliased packages.
+      # Default: false
+      no-unaliased: true
+      # Do not allow non-required aliases.
+      # Default: false
+      no-extra-aliases: true
+      # List of aliases
+      # Default: []
+      alias:
+        # Using `servingv1` alias for `knative.dev/serving/pkg/apis/serving/v1` package.
+        - pkg: knative.dev/serving/pkg/apis/serving/v1
+          alias: servingv1
+        # Using `autoscalingv1alpha1` alias for `knative.dev/serving/pkg/apis/autoscaling/v1alpha1` package.
+        - pkg: knative.dev/serving/pkg/apis/autoscaling/v1alpha1
+          alias: autoscalingv1alpha1
+        # You can specify the package path by regular expression,
+        # and alias by regular expression expansion syntax like below.
+        # See https://github.com/julz/importas#use-regular-expression for details.
+        - pkg: knative.dev/serving/pkg/apis/(\w+)/(v[\w\d]+)
+          alias: $1$2
+        # An explicit empty alias can be used to ensure no aliases are used for a package.
+        # This can be useful if `no-extra-aliases: true` doesn't fit your need.
+        # Multiple packages can use an empty alias.
+        - pkg: errors
+          alias: ""
+    inamedparam:
+      # Skips check for interface methods with only a single parameter.
+      # Default: false
+      skip-single-param: true
+    ireturn:
+      # List of interfaces to allow.
+      # Lists of the keywords and regular expressions matched to interface or package names can be used.
+      # `allow` and `reject` settings cannot be used at the same time.
+      #
+      # Keywords:
+      # - `empty` for `interface{}`
+      # - `error` for errors
+      # - `stdlib` for standard library
+      # - `anon` for anonymous interfaces
+      # - `generic` for generic interfaces added in go 1.18
+      #
+      # Default: [anon, error, empty, stdlib]
+      allow:
+        - anon
+        # You can specify idiomatic endings for interface
+        - (or|er)$
+      # List of interfaces to reject.
+      # Lists of the keywords and regular expressions matched to interface or package names can be used.
+      # `allow` and `reject` settings cannot be used at the same time.
+      #
+      # Keywords:
+      # - `empty` for `interface{}`
+      # - `error` for errors
+      # - `stdlib` for standard library
+      # - `anon` for anonymous interfaces
+      # - `generic` for generic interfaces added in go 1.18
+      #
+      # Default: []
+      reject:
+        - github.com\/user\/package\/v4\.Type
+    makezero:
+      always: true
+    nestif:
+      min-complexity: 4
+    paralleltest:
+      ignore-missing: true
+      ignore-missing-subtests: true
+    unparam:
+      # Inspect exported functions.
+      #
+      # Set to true if no external program/library imports your code.
+      # XXX: if you enable this setting, unparam will report a lot of false-positives in text editors:
+      # if it's called for subdir of a project it can't find external interfaces. All text editor integrations
+      # with golangci-lint call it on a directory with the changed file.
+      #
+      # Default: false
+      check-exported: true
+    whitespace:
+      # Enforces newlines (or comments) after every multi-line if statement.
+      # Default: false
+      multi-if: true
+      # Enforces newlines (or comments) after every multi-line function signature.
+      # Default: false
+      multi-func: true
+
+version: ""
