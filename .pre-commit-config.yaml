@@ -1,0 +1,19 @@
+#  pre-commit run --all-files
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0 # Актуальная версия на момент написания
+    hooks:
+      - id: check-yaml # Проверяет синтаксис YAML-файлов
+      - id: trailing-whitespace # Удаляет лишние пробелы в конце строк
+      - id: end-of-file-fixer # Добавляет пустую строку в конец файла
+      - id: check-added-large-files # Блокирует коммит с большими файлами
+
+  - repo: https://github.com/dnephin/pre-commit-golang
+    rev: v0.5.1 # Актуальная версия на момент написания
+    hooks:
+      - id: golangci-lint # Запускает golangci-lint
+        args: [
+          --fix,
+        ]
+#      - id: go-unit-tests # Запускает юнит-тесты
