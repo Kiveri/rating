@@ -1,13 +1,10 @@
 package feedback_in_memory
 
 import (
-	"errors"
 	"time"
 
 	"github.com/Kiveri/rating/internal/domain/model"
 )
-
-var errFeedbackNotFound = errors.New("feedback not found")
 
 type (
 	Repo struct {

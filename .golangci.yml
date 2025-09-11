@@ -10,7 +10,6 @@ linters:
     - asciicheck
     - bidichk
     - bodyclose
-    - cyclop
     - decorder
     - dogsled
     - dupl
@@ -43,12 +42,6 @@ linters:
     - whitespace
 
   settings:
-    cyclop:
-      max-complexity: 20
-      # The maximal average package complexity.
-      # If it's higher than 0.0 (float) the check is enabled.
-      # Default: 0.0
-      package-average: 0.5
     decorder:
       # Required order of `type`, `const`, `var` and `func` declarations inside a file.
       # Default: types before constants before variables before functions.

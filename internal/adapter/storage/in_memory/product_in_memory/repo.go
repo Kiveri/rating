@@ -1,13 +1,10 @@
 package product_in_memory
 
 import (
-	"errors"
 	"time"
 
 	"github.com/Kiveri/rating/internal/domain/model"
 )
-
-var errProductNotFound = errors.New("product not found")
 
 type (
 	Repo struct {

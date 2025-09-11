@@ -11,7 +11,7 @@ const (
 	postgres = "postgres"
 )
 
-func (sp *ServiceProvider) GetClientUseCase() *client_usecase.UseCase {
+func (sp *ServiceProvider) getClientUseCase() *client_usecase.UseCase {
 	if sp.clientUseCase == nil {
 		if sp.config.StorageType == inMemory {
 			sp.clientUseCase = client_usecase.NewUseCase(sp.getClientRepoInMemory())
@@ -24,7 +24,7 @@ func (sp *ServiceProvider) GetClientUseCase() *client_usecase.UseCase {
 	return sp.clientUseCase
 }
 
-func (sp *ServiceProvider) GetFeedBackUseCase() *feedback_usecase.UseCase {
+func (sp *ServiceProvider) getFeedbackUseCase() *feedback_usecase.UseCase {
 	if sp.feedbackUseCase == nil {
 		if sp.config.StorageType == inMemory {
 			sp.feedbackUseCase = feedback_usecase.NewUseCase(
@@ -43,7 +43,7 @@ func (sp *ServiceProvider) GetFeedBackUseCase() *feedback_usecase.UseCase {
 	return sp.feedbackUseCase
 }
 
-func (sp *ServiceProvider) GetProductUseCase() *product_usecase.UseCase {
+func (sp *ServiceProvider) getProductUseCase() *product_usecase.UseCase {
 	if sp.productUseCase == nil {
 		if sp.config.StorageType == inMemory {
 			sp.productUseCase = product_usecase.NewUseCase(sp.getProductRepoInMemory())

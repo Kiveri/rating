@@ -1,6 +1,9 @@
 package feedback_usecase
 
-import "github.com/Kiveri/rating/internal/domain/model"
+import (
+	"github.com/Kiveri/rating/internal/domain/dto/filters"
+	"github.com/Kiveri/rating/internal/domain/model"
+)
 
 type (
 	UseCase struct {
@@ -13,6 +16,7 @@ type (
 		Delete(id int64) error
 		GetByID(id int64) (*model.Feedback, error)
 		Update(feedback *model.Feedback) error
+		FindAllByFilter(filter *filters.FeedbackFindAllFilter) ([]*model.Feedback, error)
 	}
 	productRepo interface {
 		GetByID(id int64) (*model.Product, error)

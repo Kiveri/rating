@@ -9,6 +9,7 @@ type (
 
 	clientRepo interface {
 		Create(client *model.Client) error
+		GetByID(id int64) (*model.Client, error)
 	}
 )
 

@@ -1,13 +1,10 @@
 package client_in_memory
 
 import (
-	"errors"
 	"time"
 
 	"github.com/Kiveri/rating/internal/domain/model"
 )
-
-var errClientNotFound = errors.New("client not found")
 
 type (
 	Repo struct {
