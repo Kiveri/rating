@@ -9,6 +9,7 @@ type (
 
 	productRepo interface {
 		Create(product *model.Product) error
+		GetByID(id int64) (*model.Product, error)
 	}
 )
 

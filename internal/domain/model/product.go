@@ -30,12 +30,14 @@ func NewProduct(name, article string, price int64, productType ProductType) *Pro
 	}
 }
 
+// CalculateAverageRateByAddNew пересчитывает среднюю оценку при добавлении отзыва.
 func (p *Product) CalculateAverageRateByAddNew(newRate uint8, currentFeedBacksCount uint64) {
 	p.AverageRate = (p.AverageRate*float64(p.FeedbacksCount) + float64(newRate)) /
 		float64(currentFeedBacksCount+1)
 	p.FeedbacksCount++
 }
 
+// CalculateAverageRateByDeleteOld пересчитывает среднюю оценку при удалении отзыва.
 func (p *Product) CalculateAverageRateByDeleteOld(oldRate uint8, currentFeedBacksCount uint64) {
 	if p.FeedbacksCount <= 1 {
 		p.AverageRate = 0

@@ -8,6 +8,9 @@ import (
 	"github.com/Kiveri/rating/internal/adapter/storage/postgres/feedback_db"
 	"github.com/Kiveri/rating/internal/adapter/storage/postgres/product_db"
 	"github.com/Kiveri/rating/internal/config"
+	"github.com/Kiveri/rating/internal/controllers/http_controller/client_http_controller"
+	"github.com/Kiveri/rating/internal/controllers/http_controller/feedback_http_controller"
+	"github.com/Kiveri/rating/internal/controllers/http_controller/product_http_controller"
 	"github.com/Kiveri/rating/internal/pkg/timer"
 	"github.com/Kiveri/rating/internal/usecases/client_usecase"
 	"github.com/Kiveri/rating/internal/usecases/feedback_usecase"
@@ -30,6 +33,10 @@ type ServiceProvider struct {
 	clientUseCase   *client_usecase.UseCase
 	feedbackUseCase *feedback_usecase.UseCase
 	productUseCase  *product_usecase.UseCase
+
+	clientHttpController   *client_http_controller.Controller
+	feedbackHttpController *feedback_http_controller.Controller
+	productHttpController  *product_http_controller.Controller
 }
 
 func NewServiceProvider(config *config.Config) *ServiceProvider {
